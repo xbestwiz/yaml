@@ -20,6 +20,14 @@ pipeline {
         )
       }
     }
+    stage('statge4') {
+      steps {
+        retry(count: 3) {
+          sleep 1
+        }
+        
+      }
+    }
   }
   environment {
     var1 = 'a'
