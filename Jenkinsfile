@@ -3,26 +3,21 @@ pipeline {
   stages {
     stage('stage1') {
       steps {
-        parallel(
-          "stage1": {
-            echo 'hello'
-            
-          },
-          "stage2": {
-            sleep 1
-            
-          }
-        )
+        echo 'hello'
       }
     }
     stage('stage3') {
       steps {
-        echo '${env.var1}'
-      }
-    }
-    stage('stage4') {
-      steps {
-        stepcounter(outputFile: 'count.txt', outputFormat: 'json')
+        parallel(
+          "stage3": {
+            echo '${env.var1}'
+            
+          },
+          "stage2": {
+            sh 'echo ${env.var1}'
+            
+          }
+        )
       }
     }
   }
