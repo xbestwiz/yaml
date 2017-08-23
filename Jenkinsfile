@@ -14,7 +14,7 @@ pipeline {
             
           },
           "stage2": {
-            sh 'echo ${env.var1}'
+            sh 'echo ${var1}'
             
           }
         )
