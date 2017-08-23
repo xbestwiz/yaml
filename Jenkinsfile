@@ -3,8 +3,26 @@ pipeline {
   stages {
     stage('stage1') {
       steps {
-        echo 'hello'
+        parallel(
+          "stage1": {
+            echo 'hello'
+            
+          },
+          "stage2": {
+            sleep 1
+            
+          }
+        )
       }
     }
+    stage('stage3') {
+      steps {
+        echo 'var1'
+      }
+    }
+  }
+  environment {
+    var1 = 'a'
+    var2 = 'b'
   }
 }
