@@ -20,6 +20,11 @@ pipeline {
         echo '${env.var1}'
       }
     }
+    stage('') {
+      steps {
+        stepcounter(outputFile: 'count.txt', outputFormat: 'json')
+      }
+    }
   }
   environment {
     var1 = 'a'
