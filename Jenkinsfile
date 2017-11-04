@@ -2,22 +2,26 @@ pipeline {
   agent any
   stages {
     stage('stage1') {
+      agent any
       steps {
         echo 'hello'
       }
     }
     stage('stage3') {
-      steps {
-        parallel(
-          "stage3": {
+      parallel {
+        stage('stage3') {
+          steps {
             echo '${env.var1}'
-            
-          },
-          "stage2": {
-            sh 'echo ${var1}'
-            
+            sh '''#!/bin/bash
+
+echo \'This is a shell script.\''''
           }
-        )
+        }
+        stage('stage2') {
+          steps {
+            sh 'echo ${var1}'
+          }
+        }
       }
     }
     stage('statge4') {
