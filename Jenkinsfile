@@ -32,9 +32,9 @@ echo \'This is a shell script.\''''
         
       }
     }
-    stage('') {
+    stage('playbook') {
       steps {
-        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', extras: 'b', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root')
+        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root', forks: 2)
       }
     }
   }
