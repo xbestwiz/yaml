@@ -32,6 +32,11 @@ echo \'This is a shell script.\''''
         
       }
     }
+    stage('') {
+      steps {
+        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', extras: 'b', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root')
+      }
+    }
   }
   environment {
     var1 = 'a'
