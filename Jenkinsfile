@@ -34,7 +34,7 @@ echo \'This is a shell script.\''''
     }
     stage('playbook') {
       steps {
-        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root', forks: 2)
+        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root', forks: 2, colorized: true, inventoryContent: 'localhost,192.168.33.100')
       }
     }
   }
