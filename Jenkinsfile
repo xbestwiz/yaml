@@ -34,7 +34,7 @@ echo \'This is a shell script.\''''
     }
     stage('playbook') {
       steps {
-        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root', forks: 2, colorized: true, inventoryContent: '{\'gg\':{"hosts":[\'localhost\',\'192.168.33.100\']}}')
+        ansiblePlaybook(playbook: '/etc/ansible/playbook.yml', dynamicInventory: true, startAtTask: 'whoami', sudo: true, sudoUser: 'root', forks: 2, colorized: true, inventoryContent: '#!/bin/env python #coding:utf8 import json import sys  def group():     host1 = [\'localhost\']     host2 = [\'192.168.33.100\']     group1 = \'g1\'     group2 = \'g2\'     hostdata = {         group1:{"hosts":host1},         group2:{"hosts":host2},     }     print(json.dumps(hostdata,indent=4))   if len(sys.argv) == 2 and (sys.argv[1] == \'--list\'):     group() else:     print("Usage: %s --list" % sys.argv[0])     sys.exit(1)')
       }
     }
   }
